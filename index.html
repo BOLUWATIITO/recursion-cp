@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Orthogonal Vectors Checker</title>
+  <script>
+    function dotProduct(v1, v2) {
+      var ps = 0;
+      var size = v1.length;
+      for (var i = 0; i < size; i++) {
+        ps += v1[i] * v2[i];
+      }
+      return ps;
+    }
+
+    function checkOrthogonal() {
+      var vectors = [
+        [[1, 2, 3], [4, 5, 6]],
+        [[0, 1, 0], [1, 0, 0]],
+        [[-1, 0, 2], [2, 0, 1]]
+      ];
+
+      var output = document.getElementById("output");
+      output.innerHTML = ""; // Clear previous results
+
+      for (var i = 0; i < vectors.length; i++) {
+        var v1 = vectors[i][0];
+        var v2 = vectors[i][1];
+        var ps = dotProduct(v1, v2);
+
+        var resultText = "Vectors [" + v1 + "] and [" + v2 + "] are ";
+        if (ps === 0) {
+          resultText += "orthogonal.";
+        } else {
+          resultText += "not orthogonal.";
+        }
+
+        var resultElement = document.createElement("p");
+        resultElement.textContent = resultText;
+        output.appendChild(resultElement);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Orthogonal Vectors Checker</h1>
+  <button onclick="checkOrthogonal()">Check Orthogonal</button>
+  <div id="output"></div>
+</body>
+</html>
